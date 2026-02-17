@@ -15,7 +15,13 @@ class LogoCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
-        boxShadow: [BoxShadow(blurRadius: 8, color: Colors.grey)],
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 12,
+            color: Colors.black.withOpacity(0.2),
+            offset: Offset(0, 8),
+          ),
+        ],
       ),
       child: Center(child: SvgPicture.asset(imageUrl, fit: BoxFit.cover)),
     );

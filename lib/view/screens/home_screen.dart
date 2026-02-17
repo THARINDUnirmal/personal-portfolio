@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/util/app_colors.dart';
 import 'package:portfolio/widgets/logo_card.dart';
+import 'package:portfolio/widgets/project_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,9 +14,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  bool heroVisible = false;
   bool aboutVisible = false;
   bool skillsVisible = false;
+  bool portfolioVisible = false;
 
   @override
   void initState() {
@@ -25,9 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
       final offset = _scrollController.offset;
 
       setState(() {
-        if (offset > 50) heroVisible = true;
-        if (offset > 400) aboutVisible = true;
-        if (offset > 900) skillsVisible = true;
+        if (offset > 300) aboutVisible = true;
+        if (offset > 750) skillsVisible = true;
+        if (offset > 1100) portfolioVisible = true;
       });
     });
   }
@@ -68,6 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+                  Row(
+                    children: [
+                      navbarItems(title: "Home"),
+                      navbarItems(title: "About"),
+                      navbarItems(title: "Services"),
+                      navbarItems(title: "Portfolio"),
+                      navbarItems(title: "Contact"),
+                    ],
+                  ),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
@@ -87,121 +97,102 @@ class _HomeScreenState extends State<HomeScreen> {
 
             const SizedBox(height: 30),
 
-            AnimatedSlide(
-              offset: heroVisible ? Offset.zero : const Offset(0, 0.2),
-              duration: const Duration(milliseconds: 700),
-              curve: Curves.easeOut,
-              child: AnimatedOpacity(
-                opacity: 1,
-                duration: const Duration(milliseconds: 700),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(top: 50, left: 50),
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      height: MediaQuery.of(context).size.height * 0.6,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Wellcome To My World"),
-                          const SizedBox(height: 10),
-                          RichText(
-                            text: TextSpan(
-                              text: "Hi , I'm Tharindu Nirmal\n",
-                              style: GoogleFonts.lobster(fontSize: 60),
-                              children: [
-                                TextSpan(
-                                  text: "a ",
-                                  style: GoogleFonts.lobster(
-                                    fontSize: 40,
-                                    color: AppColors.appPinkColor,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: "Professional Mobile App\n",
-                                  style: GoogleFonts.lobster(fontSize: 40),
-                                ),
-                                TextSpan(
-                                  text: "Developer.",
-                                  style: GoogleFonts.lobster(
-                                    fontSize: 40,
-                                    color: AppColors.appPinkColor,
-                                  ),
-                                ),
-                              ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 50, left: 50),
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Wellcome To My World"),
+                      const SizedBox(height: 10),
+                      RichText(
+                        text: TextSpan(
+                          text: "Hi , I'm Tharindu Nirmal\n",
+                          style: GoogleFonts.lobster(fontSize: 60),
+                          children: [
+                            TextSpan(
+                              text: "a ",
+                              style: GoogleFonts.lobster(
+                                fontSize: 40,
+                                color: AppColors.appPinkColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 15),
-                          const Text(
-                            "i have been working since 2019. I am professional in Ui design\nand Mobile App developing",
-                          ),
-                          const SizedBox(height: 30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            TextSpan(
+                              text: "Professional Mobile App\n",
+                              style: GoogleFonts.lobster(fontSize: 40),
+                            ),
+                            TextSpan(
+                              text: "Developer.",
+                              style: GoogleFonts.lobster(
+                                fontSize: 40,
+                                color: AppColors.appPinkColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      const Text(
+                        "I have been working since 2019. I am professional in Ui design\nand Mobile App developing",
+                      ),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text("Find With Me"),
-                                  const SizedBox(height: 20),
-                                  Row(
-                                    children: const [
-                                      LogoCard(
-                                        imageUrl: "assets/svg/facebook.svg",
-                                      ),
-                                      LogoCard(
-                                        imageUrl: "assets/svg/linkedin.svg",
-                                      ),
-                                      LogoCard(
-                                        imageUrl: "assets/svg/instagram.svg",
-                                      ),
-                                      LogoCard(
-                                        imageUrl: "assets/svg/GitHub.svg",
-                                      ),
-                                    ],
+                              const Text("Find With Me"),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: const [
+                                  LogoCard(imageUrl: "assets/svg/facebook.svg"),
+                                  LogoCard(imageUrl: "assets/svg/linkedin.svg"),
+                                  LogoCard(
+                                    imageUrl: "assets/svg/instagram.svg",
                                   ),
+                                  LogoCard(imageUrl: "assets/svg/GitHub.svg"),
                                 ],
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text("Best Skill On"),
-                                  const SizedBox(height: 20),
-                                  Row(
-                                    children: const [
-                                      LogoCard(
-                                        imageUrl: "assets/svg/Flutter.svg",
-                                      ),
-                                      LogoCard(imageUrl: "assets/svg/Dart.svg"),
-                                      LogoCard(
-                                        imageUrl: "assets/svg/figma.svg",
-                                      ),
-                                      LogoCard(imageUrl: "assets/svg/java.svg"),
-                                    ],
-                                  ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Best Skill On"),
+                              const SizedBox(height: 20),
+                              Row(
+                                children: const [
+                                  LogoCard(imageUrl: "assets/svg/Flutter.svg"),
+                                  LogoCard(imageUrl: "assets/svg/Dart.svg"),
+                                  LogoCard(imageUrl: "assets/svg/figma.svg"),
+                                  LogoCard(imageUrl: "assets/svg/java.svg"),
                                 ],
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(width: 100),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          "assets/images/User.jpg",
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width * 0.25,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                const SizedBox(width: 70),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      "assets/images/User.jpg",
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width * 0.25,
+                    ),
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: 100),
@@ -313,11 +304,85 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 150),
                   ],
                 ),
               ),
             ),
+            const SizedBox(height: 130),
+
+            AnimatedSlide(
+              offset: portfolioVisible ? Offset.zero : const Offset(0, 0.2),
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeOut,
+              child: AnimatedOpacity(
+                opacity: portfolioVisible ? 1 : 0,
+                duration: const Duration(milliseconds: 700),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 70),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: RichText(
+                          text: const TextSpan(
+                            text: "My Best Selected ",
+                            style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: "portfolio",
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  color: AppColors.appBlueColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Center(
+                        child: const Text(
+                          textAlign: TextAlign.center,
+                          "The following are the best portfolios during\nthe career path as a freelancer",
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ProjectCard(
+                            title: "Easy Weather App",
+                            description:
+                                "A simple and user-friendly weather application that provides real-time weather updates, temperature, and forecasts using a clean and intuitive UI.",
+                            imagePath: "assets/images/3.png",
+                            onView: () {},
+                          ),
+                          ProjectCard(
+                            title: "MovieWave",
+                            description:
+                                "A modern movie application that allows users to explore trending movies, view detailed information, ratings, and trailers through a smooth and intuitive interface.",
+                            imagePath: "assets/images/1.png",
+                            onView: () {},
+                          ),
+                          ProjectCard(
+                            title: "Study Planner App",
+                            description:
+                                "A productivity-focused study planner application that helps students organize schedules, manage tasks, and track study progress efficiently.",
+                            imagePath: "assets/images/2.png",
+                            onView: () {},
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 120),
           ],
         ),
       ),
@@ -370,6 +435,20 @@ Widget skillCard({
           style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.85)),
         ),
       ],
+    ),
+  );
+}
+
+Widget navbarItems({required String title}) {
+  return Padding(
+    padding: const EdgeInsets.all(10),
+    child: Text(
+      title,
+      style: TextStyle(
+        color: Colors.black54,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      ),
     ),
   );
 }
