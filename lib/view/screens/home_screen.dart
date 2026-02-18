@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/services/url_services.dart';
 import 'package:portfolio/util/app_colors.dart';
 import 'package:portfolio/widgets/custom_button.dart';
 import 'package:portfolio/widgets/logo_card.dart';
@@ -158,13 +159,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               const Text("Find With Me"),
                               const SizedBox(height: 20),
                               Row(
-                                children: const [
-                                  LogoCard(imageUrl: "assets/svg/facebook.svg"),
-                                  LogoCard(imageUrl: "assets/svg/linkedin.svg"),
+                                children: [
+                                  LogoCard(
+                                    imageUrl: "assets/svg/facebook.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://www.bing.com/ck/a?!&&p=f926d0628192fa4bb56e2c97d2a86914395188491218884d2444d7ca85325a03JmltdHM9MTc3MTM3MjgwMA&ptn=3&ver=2&hsh=4&fclid=19ea1ad6-735e-6130-0c86-0c8d723e6099&psq=facebook&u=a1aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLw",
+                                    ),
+                                  ),
+                                  LogoCard(
+                                    imageUrl: "assets/svg/linkedin.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://www.linkedin.com/in/tharindu-nirmal-b15379338",
+                                    ),
+                                  ),
                                   LogoCard(
                                     imageUrl: "assets/svg/instagram.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://instagram.com/tharindu_nirmal__",
+                                    ),
                                   ),
-                                  LogoCard(imageUrl: "assets/svg/GitHub.svg"),
+                                  LogoCard(
+                                    imageUrl: "assets/svg/GitHub.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://github.com/THARINDUnirmal",
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
@@ -175,11 +194,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               const Text("Best Skill On"),
                               const SizedBox(height: 20),
                               Row(
-                                children: const [
-                                  LogoCard(imageUrl: "assets/svg/Flutter.svg"),
-                                  LogoCard(imageUrl: "assets/svg/Dart.svg"),
-                                  LogoCard(imageUrl: "assets/svg/figma.svg"),
-                                  LogoCard(imageUrl: "assets/svg/java.svg"),
+                                children: [
+                                  LogoCard(
+                                    imageUrl: "assets/svg/Flutter.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://flutter.dev/",
+                                    ),
+                                  ),
+                                  LogoCard(
+                                    imageUrl: "assets/svg/Dart.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://dart.dev/",
+                                    ),
+                                  ),
+                                  LogoCard(
+                                    imageUrl: "assets/svg/figma.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://www.figma.com/",
+                                    ),
+                                  ),
+                                  LogoCard(
+                                    imageUrl: "assets/svg/java.svg",
+                                    onTap: () => UrlServices().openUrl(
+                                      "https://www.java.com/en/",
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
@@ -536,11 +575,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                LogoCard(imageUrl: "assets/svg/facebook.svg"),
-                                LogoCard(imageUrl: "assets/svg/linkedin.svg"),
-                                LogoCard(imageUrl: "assets/svg/instagram.svg"),
-                                LogoCard(imageUrl: "assets/svg/GitHub.svg"),
+                              children: [
+                                LogoCard(
+                                  imageUrl: "assets/svg/facebook.svg",
+                                  onTap: () => UrlServices().openUrl(
+                                    "https://www.bing.com/ck/a?!&&p=f926d0628192fa4bb56e2c97d2a86914395188491218884d2444d7ca85325a03JmltdHM9MTc3MTM3MjgwMA&ptn=3&ver=2&hsh=4&fclid=19ea1ad6-735e-6130-0c86-0c8d723e6099&psq=facebook&u=a1aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLw",
+                                  ),
+                                ),
+                                LogoCard(
+                                  imageUrl: "assets/svg/linkedin.svg",
+                                  onTap: () => UrlServices().openUrl(
+                                    "https://www.linkedin.com/in/tharindu-nirmal-b15379338",
+                                  ),
+                                ),
+                                LogoCard(
+                                  imageUrl: "assets/svg/instagram.svg",
+                                  onTap: () => UrlServices().openUrl(
+                                    "https://instagram.com/tharindu_nirmal__",
+                                  ),
+                                ),
+                                LogoCard(
+                                  imageUrl: "assets/svg/GitHub.svg",
+                                  onTap: () => UrlServices().openUrl(
+                                    "https://github.com/THARINDUnirmal",
+                                  ),
+                                ),
                               ],
                             ),
 
