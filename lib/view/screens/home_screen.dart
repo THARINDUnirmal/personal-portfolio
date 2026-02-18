@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/util/app_colors.dart';
+import 'package:portfolio/widgets/custom_button.dart';
 import 'package:portfolio/widgets/logo_card.dart';
 import 'package:portfolio/widgets/project_card.dart';
 
@@ -12,6 +13,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //formKey
+  final _formKey = GlobalKey<FormState>();
+  //Text EditingControllers
+  final TextEditingController _nameContraller = TextEditingController();
+  final TextEditingController _emailContraller = TextEditingController();
+  final TextEditingController _phoneNumberContraller = TextEditingController();
+  final TextEditingController _messageContraller = TextEditingController();
+  //ScrollController
   final ScrollController _scrollController = ScrollController();
 
   bool aboutVisible = false;
@@ -308,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 130),
+            const SizedBox(height: 100),
 
             AnimatedSlide(
               offset: portfolioVisible ? Offset.zero : const Offset(0, 0.2),
@@ -382,7 +391,177 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 100),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: RichText(
+                    text: const TextSpan(
+                      text: "Contact Me ",
+                      style: TextStyle(
+                        fontSize: 45,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "Now",
+                          style: TextStyle(
+                            fontSize: 45,
+                            color: AppColors.appBlueColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            child: Column(
+                              children: [
+                                Column(
+                                  children: [
+                                    textFieldWidget(
+                                      contraller: _nameContraller,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Please Enter Your Name";
+                                        }
+                                      },
+                                      hintText: "Your Name",
+                                    ),
+                                    textFieldWidget(
+                                      contraller: _emailContraller,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Please Enter Your Email";
+                                        }
+                                      },
+                                      hintText: "Your Email",
+                                    ),
+                                    textFieldWidget(
+                                      contraller: _phoneNumberContraller,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Please Enter Phone Number";
+                                        } else if (value.length < 10) {
+                                          return "Please Enter Valid Phone Number";
+                                        }
+                                      },
+                                      hintText: "Your Phone",
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            child: textFieldWidget(
+                              contraller: _messageContraller,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Please Enter Message";
+                                }
+                              },
+                              maxLines: 7,
+                              hintText: "Your Message",
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 40),
+                      InkWell(
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {}
+                        },
+                        child: CustomButton(text: "Sent Message"),
+                      ),
+                      const SizedBox(height: 100),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 30,
+                          horizontal: 40,
+                        ),
+                        color: AppColors.appBackgroundColor,
+                        child: Column(
+                          children: [
+                            Divider(color: Colors.grey.withOpacity(0.3)),
+
+                            const SizedBox(height: 20),
+
+                            RichText(
+                              text: TextSpan(
+                                text: "Ape",
+                                style: GoogleFonts.lobster(
+                                  fontSize: 28,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: "x",
+                                    style: GoogleFonts.lobster(
+                                      fontSize: 28,
+                                      color: AppColors.appPinkColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            const SizedBox(height: 12),
+
+                            Text(
+                              "Building clean and modern digital experiences",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 14,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+
+                            const SizedBox(height: 20),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                LogoCard(imageUrl: "assets/svg/facebook.svg"),
+                                LogoCard(imageUrl: "assets/svg/linkedin.svg"),
+                                LogoCard(imageUrl: "assets/svg/instagram.svg"),
+                                LogoCard(imageUrl: "assets/svg/GitHub.svg"),
+                              ],
+                            ),
+
+                            const SizedBox(height: 25),
+
+                            Text(
+                              "© ${DateTime.now().year} Tharindu Nirmal (Apex). All rights reserved.",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 13,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -448,6 +627,41 @@ Widget navbarItems({required String title}) {
         color: Colors.black54,
         fontWeight: FontWeight.bold,
         fontSize: 16,
+      ),
+    ),
+  );
+}
+
+Widget textFieldWidget({
+  required String hintText,
+  required TextEditingController contraller,
+  String? Function(String?)? validator,
+  int? maxLines,
+}) {
+  return Container(
+    margin: EdgeInsets.only(top: 10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      boxShadow: [
+        BoxShadow(
+          blurRadius: 12,
+          color: Colors.black.withOpacity(0.2),
+          offset: Offset(0, 4),
+        ),
+      ],
+    ),
+    child: TextFormField(
+      maxLines: maxLines,
+      controller: contraller,
+      validator: validator,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        labelText: hintText,
+        filled: true,
+        fillColor: Colors.white,
       ),
     ),
   );
